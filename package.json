@@ -1,0 +1,29 @@
+{
+  "name": "ajax-blog-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify main.js -o bundle.js",
+    "watch": "watchify main.js -o bundle.js",
+    "dev-server": "live-server .",
+    "dev": "npm run watch\" \"npm run dev-server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahselee223/ajax-blog-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarahselee223/ajax-blog-frontend/issues"
+  },
+  "homepage": "https://github.com/sarahselee223/ajax-blog-frontend#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "browserfy": "^1.0.0",
+    "cors": "^2.8.5",
+    "live-server": "^1.2.0",
+    "watchify": "^3.11.0"
+  }
+}

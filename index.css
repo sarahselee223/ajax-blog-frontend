@@ -1,0 +1,11 @@
+.row{
+    padding: 5%;
+}
+
+.createPost {
+    display: none;
+}
+
+.showPost {
+    display: none;
+}

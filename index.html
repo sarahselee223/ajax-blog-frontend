@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script defer src="./main.js"></script>
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.8.1/dist/showdown.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="scripts/requests/posts.js" charset="utf-8"></script>
+    <script src="scripts/templates/welcome.js" charset="utf-8"></script>
+    <script src="scripts/templates/sidebar.js" charset="utf-8"></script>
+    <script src="scripts/render/sidebar.js" charset="utf-8"></script>
+    <script src="scripts/templates/post.js" charset="utf-8"></script>
+    <script src="scripts/render/post.js" charset="utf-8"></script>
+    <script src="scripts/templates/form.js" charset="utf-8"></script>
+    <script src="scripts/render/new.js" charset="utf-8"></script>
+    <script src="scripts/render/edit.js" charset="utf-8"></script>
+    <script src="scripts/render/home.js" charset="utf-8"></script>
+    <script src="scripts/render/errors.js" charset="utf-8"></script>
+    <script src="scripts/util.js" charset="utf-8"></script>
+    <script defer="" src="scripts/main.js" charset="utf-8"></script>
+</head>
+    <body onload="getPosting()">
+        <div class="main jumbotron jumbotron-fluid bg-info text-light">
+            <div class="container">
+            <h1 class="display-3">Welcome to My Blog</h1>
+            <p class="lead">About Technology and Fun Stuff</p>
+            <p class="lead">
+                <button id="create-post" onclick="createFunction()" class="btn btn-secondary">Create a New Post</button>
+            </p>
+            </div>
+        </div>
+
+        <div class="createPost">
+            <div id="sidebar" class="col-4"></div>
+            <div id="view" class="col-8">
+                <form id="post-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Content</label>
+                        <textarea type="text" rows="6" class="form-control" id="content"></textarea>
+                    </div>
+                    <button onclick="registerFunction(event)" class="btn btn-info btn-large">Create New Post</button>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="showPost container">
+            <div class="row">
+                <div class="col">
+                    <section style="display: none;" class="alert alert-danger text-center" id="errors"></section>
+                </div>
+            </div>
+            <div class="row">
+                <div id="sidebar" class="col-4">
+                    <ul class="list-group">
+                        <li>
+                            <a href="#/posts/415" class="list-group-item list-group-item-action active">
+                                tet
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            <div id="view" class="col-8">
+            <section>
+                <header id="title-display">
+                    <h2 id="nested-title">test</h2>
+                </header>
+                <article id="content-display"><p id="nested-content">test</p></article>
+                    <aside class="my-4">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item">
+                            <a class="nav-link" id="edit-post" href="#/posts/415/edit">Edit</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-danger" id="delete-post" href="#">Delete</a>
+                            </li>
+                        </ul>
+                    </aside>
+            </section>
+            </div>
+            </div>
+        </div>
+</body>
+</html>
