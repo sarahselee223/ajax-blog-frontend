@@ -17,7 +17,7 @@ function displayPosts (postArr){
         const title = post.title
         const content = post.content
         getTitle(id, title)
-        //getContent(title, content)
+        getContent(title, content)
     })
 }
     
@@ -56,10 +56,7 @@ function getContent(title, content){
 
 
 function registerFunction(event){
-    // const newTitle = document.getElementById('title')
-    // const newContent = document.getElementById('content')
-    // const titleList = document.querySelector('.list-group')
-
+    
     const createPost = document.querySelector('.createPost')
     createPost.style.display = "none"
     const showPost = document.querySelector('.showPost')
