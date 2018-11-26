@@ -4,8 +4,18 @@
 
 .createPost {
     display: none;
+    padding: 10%;
 }
 
 .showPost {
+    display: none;
+    margin-top: 0;
+}
+
+.list-group{
+    list-style-type: none;
+}
+
+.editView{
     display: none;
 }

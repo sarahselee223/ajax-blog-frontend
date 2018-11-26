@@ -22,13 +22,13 @@
     <script src="scripts/util.js" charset="utf-8"></script>
     <script defer="" src="scripts/main.js" charset="utf-8"></script>
 </head>
-    <body onload="getPosting()">
+    <body onload="getPosts()">
         <div class="main jumbotron jumbotron-fluid bg-info text-light">
             <div class="container">
             <h1 class="display-3">Welcome to My Blog</h1>
             <p class="lead">About Technology and Fun Stuff</p>
             <p class="lead">
-                <button id="create-post" onclick="createFunction()" class="btn btn-secondary">Create a New Post</button>
+                <button id="create-post" onclick="createDisplay()" class="btn btn-secondary">Create a New Post</button>
             </p>
             </div>
         </div>
@@ -45,26 +45,17 @@
                         <label for="title">Content</label>
                         <textarea type="text" rows="6" class="form-control" id="content"></textarea>
                     </div>
-                    <button onclick="registerFunction(event)" class="btn btn-info btn-large">Create New Post</button>
+                    <button onclick="postRegister(event)" class="btn btn-info btn-large">Create New Post</button>
                 </form>
             </div>
         </div>
 
         
         <div class="showPost container">
-            <div class="row">
-                <div class="col">
-                    <section style="display: none;" class="alert alert-danger text-center" id="errors"></section>
-                </div>
-            </div>
+           
             <div class="row">
                 <div id="sidebar" class="col-4">
                     <ul class="list-group">
-                        <li>
-                            <a href="#/posts/415" class="list-group-item list-group-item-action active">
-                                tet
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
@@ -77,7 +68,7 @@
                     <aside class="my-4">
                         <ul class="nav justify-content-end">
                             <li class="nav-item">
-                            <a class="nav-link" id="edit-post" href="#/posts/415/edit">Edit</a>
+                            <a class="nav-link" id="edit-post" href="#">Edit</a>
                             </li>
                             <li class="nav-item">
                             <a class="nav-link text-danger" id="delete-post" href="#">Delete</a>
@@ -87,6 +78,20 @@
             </section>
             </div>
             </div>
+        </div>
+
+        <div id="view" class="col-8 editView">
+            <form id="post-form">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" value="dd">
+              </div>
+              <div class="form-group">
+                <label for="title">Content</label>
+                <textarea type="text" rows="6" class="form-control" id="content">dd</textarea>
+              </div>
+              <button type="submit" onclick="updateFunction(event)" class="btn btn-info btn-large">Update Post</button>
+            </form>
         </div>
 </body>
 </html>

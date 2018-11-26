@@ -21,7 +21,6 @@
   "homepage": "https://github.com/sarahselee223/ajax-blog-frontend#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "browserfy": "^1.0.0",
     "cors": "^2.8.5",
     "live-server": "^1.2.0",
     "watchify": "^3.11.0"
