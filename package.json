@@ -27,6 +27,7 @@
     "watchify": "^3.11.0"
   },
   "devDependencies": {
-    "run-all": "^1.0.1"
+    "run-all": "^1.0.1",
+    "surge": "^0.20.1"
   }
 }
