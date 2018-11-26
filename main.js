@@ -1,3 +1,6 @@
+const axios = require('axios')
+
+getPosting()
 
 
 function createDisplay(){
@@ -14,7 +17,7 @@ function getPosts(){
 
     axios.get('http://127.0.0.1:5000/posts/')
         .then(function(result){
-            displayPosts(result.data)
+            displayPosts(result.data.data)
         })
 }
 
@@ -63,6 +66,7 @@ function getTitle(id, title){
 function getContent(title, content){
     const titleDisplay = document.getElementById("title-display")
     const nestedTitle = document.getElementById('nested-title')
+    console.log(nestedTitle)
     titleDisplay.removeChild(nestedTitle)
     const h2 = document.createElement('h2')
     h2.setAttribute("id", "nested-title")

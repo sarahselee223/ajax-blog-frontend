@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify main.js -o bundle.js",
-    "watch": "watchify main.js -o bundle.js",
+    "build": "browserify -d main.js -o bundle.js",
+    "watch": "watchify -d main.js -o bundle.js",
     "dev-server": "live-server .",
-    "dev": "npm run watch\" \"npm run dev-server\""
+    "dev": "run-all \"npm run watch\" \"npm run dev-server\""
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.5",
+    "browserfy": "^1.0.0",
     "live-server": "^1.2.0",
     "watchify": "^3.11.0"
+  },
+  "devDependencies": {
+    "run-all": "^1.0.1"
   }
 }
