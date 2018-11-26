@@ -1,53 +1,63 @@
 const axios = require('axios')
 
-getPosting()
+getPosts()
 
+document.getElementById('show-create-post').onclick = createDisplay
+document.getElementById('create-post').onclick = postRegister
+document.getElementById('update-post').onclick = updateFunction
 
 function createDisplay(){
+    window.location.href = '/#/posts/new'
     const createPost = document.querySelector('.createPost')
     const showPost = document.querySelector('.showPost')
     createPost.style.display = "block"
     showPost.style.display = "none"
-    event.preventDefault()
+    
+    document.getElementById('title').value = ''
+    document.getElementById('content').value = ''
+    
 }
 
 function getPosts(){
     const showPost = document.querySelector('.showPost')
     showPost.style.display = "block"
 
-    axios.get('http://127.0.0.1:5000/posts/')
+    axios.get('https://dry-dusk-46918.herokuapp.com/posts/')
         .then(function(result){
-            displayPosts(result.data.data)
+            displayPosts(result.data)
         })
 }
 
 const list = document.querySelector('.list-group')
 list.onclick = function(event){
     const address = event.target.href
-    getOnePost(address.slice(30,39))
+    getOnePost(sliceId(address))
 }
 
 function getOnePost(id){
-    axios.get(`http://127.0.0.1:5000/posts/${id}`)
+    axios.get(`https://dry-dusk-46918.herokuapp.com/posts/${id}`)
         .then(function(result){
             displayPosts([result.data])
         })
 }
 
 function displayPosts (postArr){
-    if(postArr.length <= 1){
+   
+    if (postArr.length <= 1) {
         const post = postArr[0]
         const title = post.title
         const content = post.content
         getContent(title, content)
+  
     } else {
     postArr.map(post => {
         const id = post.id
         const title = post.title
         const content = post.content
+        window.location.href = `/#/posts/${id}`
         getTitle(id, title)
         getContent(title, content)
-    })
+        })
     }
 }
     
@@ -66,7 +76,6 @@ function getTitle(id, title){
 function getContent(title, content){
     const titleDisplay = document.getElementById("title-display")
     const nestedTitle = document.getElementById('nested-title')
-    console.log(nestedTitle)
     titleDisplay.removeChild(nestedTitle)
     const h2 = document.createElement('h2')
     h2.setAttribute("id", "nested-title")
@@ -85,25 +94,38 @@ function getContent(title, content){
 }
 
 function postRegister(event){
+    event.preventDefault()
+    const editPost = document.querySelector('.editView')
     const createPost = document.querySelector('.createPost')
     const showPost = document.querySelector('.showPost')
     const newTitle = document.getElementById('title').value
     const newContent = document.getElementById('content').value
-    createNewPost(newTitle, newContent)
     createPost.style.display = "none"
+    editPost.style.display = "none"
     showPost.style.display = "block"
-    event.preventDefault()
+    createNewPost(newTitle, newContent)
+}
+
+function emptyTitleList(){
+    const titleList = document.querySelector('.list-group')
+    titleList.innerHTML=""
 }
 
 function createNewPost (newTitle, newContent){
-    axios.post('http://127.0.0.1:5000/posts/', {
+    axios.post('https://dry-dusk-46918.herokuapp.com/posts/', {
         "title": newTitle,
         "content": newContent
     })
     .then(function(result){
         const id = result.data.id
         window.location.href = `/#/posts/${id}`
-        reset()
+        emptyTitleList()
+
+        axios.get('https://dry-dusk-46918.herokuapp.com/posts/')
+            .then(function(result){
+            displayLists(result.data)
+            getOnePost(id)
+        })
     })
 }
 
@@ -113,17 +135,20 @@ deletePost.onclick = function(e){
 }
 
 function delteOnePosting(address){
-    const id = address.slice(30,39)
-    axios.delete(`http://127.0.0.1:5000/posts/${id}`)
+    const id = sliceId(address)
+    axios.delete(`https://dry-dusk-46918.herokuapp.com/posts/${id}`)
         .then(function(result){
-            reset()
+            emptyTitleList()
+
+            axios.get('https://dry-dusk-46918.herokuapp.com/posts/')
+                .then(function(result){
+                    displayPosts(result.data)
+             })
         })
 }
 
-function reset(){
-    const titleList = document.querySelector('.list-group')
-    titleList.innerHTML=""
-    getPosts()
+function sliceId (address){
+    return address.slice(address.lastIndexOf("/")+1, address.lastIndexOf("/")+10)
 }
 
 const editPostButton = document.getElementById('edit-post')
@@ -132,12 +157,13 @@ editPostButton.onclick = function(e){
     showPost.style.display = "none"
     const editPost = document.querySelector('.editView')
     editPost.style.display = "block"
-    const id = window.location.href.slice(30,39)
+
+    const id = sliceId(window.location.href)
     fetchEditFormData(id)
 }
 
 function fetchEditFormData(id){
-    axios.get(`http://127.0.0.1:5000/posts/${id}`)
+    axios.get(`https://dry-dusk-46918.herokuapp.com/posts/${id}`)
     .then(function(result){
         populateEditForm(result.data.id, result.data.title, result.data.content)
     })
@@ -153,7 +179,7 @@ function populateEditForm(id, title, content){
 
 function updateFunction(event){
     event.preventDefault()
-    const id = window.location.href.slice(30,39)
+    const id = sliceId(window.location.href)
     const title= document.querySelector('.editView #title').value
     const content = document.querySelector('.editView #content').value
     updatePost(id, title, content)
@@ -161,16 +187,31 @@ function updateFunction(event){
 
 function updatePost(id, title, content){
 
-    axios.put(`http://127.0.0.1:5000/posts/${id}`,{
+    axios.put(`https://dry-dusk-46918.herokuapp.com/posts/${id}`,{
             "title": title,
             "content": content
     })
         .then(function(result){
+            window.location.href = `/#/posts/${id}`
             const editPost = document.querySelector('.editView')
             editPost.style.display = "none"
-            reset()
-            
-            getOnePosting(id)
+            const showPost = document.querySelector('.showPost')
+            showPost.style.display = "block"
+
+            emptyTitleList()
+
+            axios.get('https://dry-dusk-46918.herokuapp.com/posts/')
+                .then(function(result){
+                displayLists(result.data)
+                getOnePost(id)
+            })
         })
 }
 
+function displayLists(postArr){
+    postArr.map(post => {
+        const id = post.id
+        const title = post.title
+        getTitle(id, title)
+    })
+}

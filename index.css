@@ -4,7 +4,7 @@
 
 .createPost {
     display: none;
-    padding: 10%;
+    padding: 5%;
 }
 
 .showPost {
@@ -18,4 +18,5 @@
 
 .editView{
     display: none;
+    margin: 5%;
 }

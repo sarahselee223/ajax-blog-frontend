@@ -8,13 +8,13 @@
     <script src="https://cdn.rawgit.com/showdownjs/showdown/1.8.1/dist/showdown.min.js" charset="utf-8"></script>
     <script defer src="bundle.js" charset="utf-8"></script>
 </head>
-    <body onload="getPosts()">
+    <body>
        <div class="main jumbotron jumbotron-fluid bg-info text-light">
             <div class="container">
             <h1 class="display-3">Welcome to My Blog</h1>
             <p class="lead">About Technology and Fun Stuff</p>
             <p class="lead">
-                <button id="create-post" onclick="createDisplay()" class="btn btn-secondary">Create a New Post</button>
+                <button id="show-create-post" class="btn btn-secondary">Create a New Post</button>
             </p>
             </div>
         </div>
@@ -31,7 +31,7 @@
                         <label for="title">Content</label>
                         <textarea type="text" rows="6" class="form-control" id="content"></textarea>
                     </div>
-                    <button onclick="postRegister(event)" class="btn btn-info btn-large">Create New Post</button>
+                    <button id="create-post" class="btn btn-info btn-large">Create New Post</button>
                 </form>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 <label for="title">Content</label>
                 <textarea type="text" rows="6" class="form-control" id="content">dd</textarea>
               </div>
-              <button type="submit" onclick="updateFunction(event)" class="btn btn-info btn-large">Update Post</button>
+              <button type="submit" id="update-post" class="btn btn-info btn-large">Update Post</button>
             </form>
         </div>
 </body>
